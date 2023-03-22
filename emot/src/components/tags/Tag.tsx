@@ -1,10 +1,9 @@
-function Tag(title:any) {
+function Tag(props: any) {
+    const { title } = props
     return (
-        <>
-            <div className="flex w-fit h-4 px-1 rounded-sm bg-secondary">
-                <p className="text-body">{title}</p>
-            </div>
-        </>
+        <div className="flex w-fit h-fit rounded-3xl px-2 bg-secondary">
+            <p className="text-body">{title}</p>
+        </div>
     )
 }
 
