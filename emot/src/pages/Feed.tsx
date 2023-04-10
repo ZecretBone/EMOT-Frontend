@@ -1,19 +1,28 @@
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useHttp } from "../api/http";
 import Headers from "../components/Headers";
 import AddButton from "../components/buttons/addButton";
 import FeedCard from "../components/cards/feedCard";
 
 function Feed() {
 
+    const request = useHttp()
     const location = useLocation()
     const user = location.state.user
-    const videos = user.videos
-
-    // console.log('videos', videos)
+    const navigate = useNavigate()
+    const [videos, setVideos] = useState([])
 
     function addVideo() {
-
+        navigate(`/${user.AccName}/recordVideo`, { state: { user: user } })
     }
+
+    useEffect(() => {
+        request.Get(`/back-emot/api/dashboard`, {}).then((res: any) => {
+            setVideos(res.data.AllSum)
+            console.log(videos)
+        })
+    }, [])
 
     return (
         <div className="flex-col w-full h-full">

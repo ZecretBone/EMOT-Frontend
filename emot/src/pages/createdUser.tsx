@@ -1,15 +1,35 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useHttp } from "../api/http";
 import Headers from "../components/Headers";
 import NextButton from "../components/buttons/nextButton";
 
 function CreatedUser() {
     const [username, setUsername] = useState('')
+    const [otp, setOTP] = useState('')
 
     const navigate = useNavigate();
+    const request = useHttp()
+
+    const user = {
+        otp: '309092',
+        title: { username },
+        videos: []
+    }
 
     function nextButton() {
-        navigate('/createdNewUser/otp', { state: { title: username } })
+        const newUser = {
+            Otp: otp,
+            AccName: username
+        }
+        request.Post('/back-emot/register/web', newUser).then((res) => {
+            console.log('newUser', newUser)
+            console.log('res', res)
+            if (res){
+                navigate(`/verifyWithEMOT`, { state: { user: res.data } })
+            }
+        })
+
     }
 
     return (
@@ -28,6 +48,17 @@ function CreatedUser() {
                         placeholder="username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>
+
+                <div className="flex-col space-y-2">
+                    <p className="flex text-h3">Enter OTP</p>
+                    <input
+                        type="text"
+                        className="text-p h-9 w-full border px-2 rounded-md"
+                        placeholder="OTP"
+                        value={otp}
+                        onChange={(e) => setOTP(e.target.value)}
                     />
                 </div>
 

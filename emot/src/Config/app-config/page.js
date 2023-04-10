@@ -2,7 +2,9 @@ import Feed from "../../pages/Feed";
 import User from "../../pages/User";
 import VideoDetail from "../../pages/VideoDetail";
 import CreatedUser from "../../pages/createdUser";
-import Otp from "../../pages/otp";
+import RecordVideo from "../../pages/recordVideo";
+import ScanPage from "../../pages/scanPage";
+import ScanPagenewrec from "../../pages/scanPagenewrec";
 
 
 export const routePath = [
@@ -55,10 +57,36 @@ export const routePath = [
     childPage: null
   },
   {
-    name: "otp",
-    path: "/createdNewUser/otp",
+    name: "recordVideo",
+    path: "/:AccName/recordVideo",
     component: () => {
-      return <Otp />
+      return <RecordVideo />
+    },
+    show: {
+      header: true,
+      footer: false,
+    },
+    childPage: null
+  },
+
+  {
+    name: "scanCard",
+    path: "/verifyWithEMOT",
+    component: () => {
+      return <ScanPage />
+    },
+    show: {
+      header: true,
+      footer: false,
+    },
+    childPage: null
+  },
+
+  {
+    name: "newrecScanCard",
+    path: "/:AccName/recordVideo/verifyWithEMOT",
+    component: () => {
+      return <ScanPagenewrec />
     },
     show: {
       header: true,
