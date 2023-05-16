@@ -10,7 +10,9 @@ module.exports = {
       'yellow': '#FEC855',
       'blue': '#2A72A7',
       'red': '#AB2D2D',
-      'green': '#2DAB5D'
+      'green': '#2DAB5D',
+      'white': '#FFFFFF',
+      'black': '#000000'
     },
     fontSize: {
       'h1': '2.25rem',

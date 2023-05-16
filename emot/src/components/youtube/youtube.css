@@ -1,0 +1,12 @@
+.react-youtube {
+    pointer-events: : none;
+}
+
+.react-youtube iframe {
+    pointer-events: none;
+  }
+  
+  .react-youtube .ytp-chrome-top,
+  .react-youtube .ytp-chrome-bottom {
+    display: none !important;
+  }

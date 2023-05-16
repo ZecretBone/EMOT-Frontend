@@ -2,9 +2,11 @@ import Feed from "../../pages/Feed";
 import User from "../../pages/User";
 import VideoDetail from "../../pages/VideoDetail";
 import CreatedUser from "../../pages/createdUser";
+import PlayingVideo from "../../pages/playingVideo";
 import RecordVideo from "../../pages/recordVideo";
 import ScanPage from "../../pages/scanPage";
 import ScanPagenewrec from "../../pages/scanPagenewrec";
+import TabEMOT from "../../pages/tabEmot";
 
 
 export const routePath = [
@@ -35,6 +37,18 @@ export const routePath = [
   {
     name: "videoDetail",
     path: "/video/:id",
+    component: () => {
+      return <VideoDetail />;
+    },
+    show: {
+      header: true,
+      footer: false,
+    },
+    childPage: null
+  },
+  {
+    name: "videoDetail",
+    path: ":AccName/video/:id",
     component: () => {
       return <VideoDetail />;
     },
@@ -87,6 +101,32 @@ export const routePath = [
     path: "/:AccName/recordVideo/verifyWithEMOT",
     component: () => {
       return <ScanPagenewrec />
+    },
+    show: {
+      header: true,
+      footer: false,
+    },
+    childPage: null
+  },
+
+  {
+    name: "tabEMOT",
+    path: "/:AccName/recordVideo/tabEMOT",
+    component: () => {
+      return <TabEMOT />
+    },
+    show: {
+      header: true,
+      footer: false,
+    },
+    childPage: null
+  },
+
+  {
+    name: "playingVideo",
+    path: "/:AccName/recordVideo/:id",
+    component: () => {
+      return <PlayingVideo />
     },
     show: {
       header: true,

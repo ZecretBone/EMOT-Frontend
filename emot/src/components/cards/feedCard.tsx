@@ -11,10 +11,10 @@ function FeedCard(props: any) {
     }
 
     return (
-        <button className="flex w-full h-fit p-2 rounded-lg shadow-md" onClick={() => onClickCard()}>
+        <button className="flex w-full h-fit p-2 rounded-lg shadow-md space-x-2 items-center" onClick={() => onClickCard()}>
             {/* emotion emoji*/}
             <div className="flex w-10 h-10">
-
+                <img src={require(`../../svg/${video.MainE}.svg`)} alt='video.MainE' />
             </div>
             <div className="flex-col w-fit h-fit space-y-1">
                 <p className="text-h3 font-medium">{title}</p>
@@ -22,7 +22,7 @@ function FeedCard(props: any) {
                     {emotions.map((emotion: any, index: number) => {
                         return (
                             <div key={index}>
-                                <Tag title={emotion.title} />
+                                <Tag title={emotion.MainE} />
                             </div>
                         )
                     })}

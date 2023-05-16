@@ -12,6 +12,8 @@ function Feed() {
     const user = location.state.user
     const navigate = useNavigate()
     const [videos, setVideos] = useState([])
+    // const [count, setCount] = useState(0)
+
 
     function addVideo() {
         navigate(`/${user.AccName}/recordVideo`, { state: { user: user } })
@@ -19,10 +21,22 @@ function Feed() {
 
     useEffect(() => {
         request.Get(`/back-emot/api/dashboard`, {}).then((res: any) => {
-            setVideos(res.data.AllSum)
-            console.log(videos)
+            if (res.data.AllSum) {
+                setVideos(res.data.AllSum)
+                console.log("videos", videos)
+                // console.log("videos2", res.data.AllSum)
+            }
+
         })
-    }, [])
+
+    }, [videos])
+
+    // useEffect(() => {
+    //     // const timeout = setTimeout(() => {
+    //     // setCount(count + 1);
+    //     console.log("videos", videos, count)
+    //     // }, 3000);
+    // }, [count])
 
     return (
         <div className="flex-col w-full h-full">
@@ -33,17 +47,20 @@ function Feed() {
                     <div className="flex w-full justify-end">
                         <AddButton action={addVideo} />
                     </div>
+
                 </div>
-                {videos ? (
-                    <div className="flex-col space-y-2">
+                <div className="flex-col space-y-2">
+                    {videos ? (<>
                         {videos.map((video: any, index: number) => {
                             return (
+
                                 <div key={index}>
-                                    <FeedCard id={video.id} video={video} title={video.title} emotions={video.emotions} />
+                                    <FeedCard id={video.VdoID} video={video} title={video.VdoName} emotions={video.EachE} />
                                 </div>
                             )
                         })}
-                    </div>) : null}
+                    </>) : null}
+                </div>
             </div>
         </div>
     );
